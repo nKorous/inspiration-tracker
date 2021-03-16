@@ -16,8 +16,21 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getInspirationData() {
-    this.http.get<InspirationData[]>(BASE_URL + '/api/getInspiration').subscribe(inspiration => {
-      this.inspirationData$.next(inspiration)
+    this.http.get<any[]>(BASE_URL + '/api/getInspirationData').subscribe(inspiration => {
+      const insp = inspiration.map(i => {
+        return {
+          ...i,
+          inspOne: i.inspOne.data[0],
+          inspTwo: i.inspTwo.data[0],
+          inspThree: i.inspThree.data[0],
+          inspFour: i.inspFour.data[0],
+          inspFive: i.inspFive.data[0]
+        }
+      })
+
+
+
+      this.inspirationData$.next(insp)
     })
   }
 
