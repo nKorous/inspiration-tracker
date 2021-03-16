@@ -1,0 +1,12 @@
+<dx-data-grid [dataSource]='inspirationData' (onRowUpdated)='rowUpdated($event)'>
+
+  <dxi-column dataField='realName' caption='Real Name' dataType='string' [allowEditing]='false'></dxi-column>
+  <dxi-column dataField='playerName' caption='Player Name' dataType='string' [allowEditing]='false'></dxi-column>
+  <dxi-column dataField='inspOne' caption='First' dataType='boolean'></dxi-column>
+  <dxi-column dataField='inspTwo' caption='Second' dataType='boolean'></dxi-column>
+  <dxi-column dataField='inspThree' caption='Third' dataType='boolean'></dxi-column>
+  <dxi-column dataField='inspFour' caption='Fourth' dataType='boolean'></dxi-column>
+  <dxi-column dataField='inspFive' caption='Fifth' dataType='boolean'></dxi-column>
+
+  <dxo-editing mode='row' [allowUpdating]='true'></dxo-editing>
+</dx-data-grid>
