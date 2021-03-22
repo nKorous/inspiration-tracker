@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<mat-toolbar color='primary'>
+  <button mat-raised-button mat-icon-button (click)='drawer.toggle()' color='primary'>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container style='height: 100%; width: 100%;' autosize>
+  <mat-drawer #drawer mode='side'>
+    <div class='sidenavCard' *ngFor='let c of campaignList' (click)='goToCampaign(c)'>
+      {{ c.campaignName }} - {{ c.dungeonMaster }}
+    </div>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
+

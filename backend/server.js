@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/getInspirationData", (req, res) => {
-  const stmt = "SELECT * FROM inspiration ORDER BY playerName";
+  const stmt = "SELECT * FROM vw_inspiration ORDER BY playerName";
 
-  db.query(stmt, (err, result) => {
+  db.query(stmt,(err, result) => {
     if (result) {
       res.status(200).send(result);
     }
@@ -35,6 +35,12 @@ app.get("/api/getInspirationData", (req, res) => {
     }
   });
 });
+
+app.get('/api/getCampaigns', (req, res) => {
+  const stmt = 'SELECT * FROM campaigns'
+
+  db.query(stmt, (err, result) => handleHttpReturn(res, err, result, 'CANNOT GET campaigns'))
+})
 
 app.post("/api/updateInspiration", (req, res) => {
   const body = req.body;
@@ -62,3 +68,21 @@ app.post("/api/updateInspiration", (req, res) => {
     }
   );
 });
+
+app.post('/api/addPlayer', (req, res) => {
+  const body = req.body
+  const stmt = 'INSERT INTO inspiration (realName, playerName, campaignKey) VALUES (?, ?, ?)'
+
+  db.query(stmt, [body.realName, body.playerName, body.campaignKey], (err, result) => handleHttpReturn(res, err, result, 'CANNOT POST NEW PLAYER'))
+})
+
+function handleHttpReturn(res, err, result, msg) {
+  if(result) {
+    res.status(200).send(result)
+  }
+
+  if(err) {
+    console.warn(err)
+    res.status(500).send({ERR: msg})
+  }
+}

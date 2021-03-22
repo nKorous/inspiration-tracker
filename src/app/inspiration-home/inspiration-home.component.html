@@ -1,15 +1,16 @@
 <div style='width: 100%; text-align: center'>
-  <h1>Curse of Strahd Inspiration Tracker</h1>
+  <h1>{{ selectedCampaign.campaignName }} Inspiration Tracker</h1>
+  <h3>Dungeon Master: {{ selectedCampaign.dungeonMaster }}</h3>
 </div>
-<dx-data-grid [dataSource]='inspirationData' (onRowUpdated)='rowUpdated($event)'>
+<dx-data-grid [dataSource]='inspirationData' (onRowUpdated)='rowUpdated($event)' (onRowInserted)='rowAdded($event)'>
 
-  <dxi-column dataField='realName' caption='Real Name' dataType='string' [allowEditing]='false'></dxi-column>
-  <dxi-column dataField='playerName' caption='Player Name' dataType='string' [allowEditing]='false'></dxi-column>
+  <dxi-column dataField='realName' caption='Real Name' dataType='string'></dxi-column>
+  <dxi-column dataField='playerName' caption='Player Name' dataType='string'></dxi-column>
   <dxi-column dataField='inspOne' caption='First' dataType='boolean'></dxi-column>
   <dxi-column dataField='inspTwo' caption='Second' dataType='boolean'></dxi-column>
   <dxi-column dataField='inspThree' caption='Third' dataType='boolean'></dxi-column>
   <dxi-column dataField='inspFour' caption='Fourth' dataType='boolean'></dxi-column>
   <dxi-column dataField='inspFive' caption='Fifth' dataType='boolean'></dxi-column>
 
-  <dxo-editing mode='row' [allowUpdating]='true'></dxo-editing>
+  <dxo-editing mode='row' [allowUpdating]='true' [allowAdding]='true'></dxo-editing>
 </dx-data-grid>
