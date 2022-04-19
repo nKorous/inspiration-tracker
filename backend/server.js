@@ -76,6 +76,13 @@ app.post('/api/addPlayer', (req, res) => {
   db.query(stmt, [body.realName, body.playerName, body.campaignKey], (err, result) => handleHttpReturn(res, err, result, 'CANNOT POST NEW PLAYER'))
 })
 
+app.post('/api/addCampaign', (req, res) => {
+  const body = req.body
+  const stmt = 'INSERT INTO campaigns (campaignName, dungeonMaster) VALUES (?, ?)'
+
+  db.query(stmt, [body.campaignName, body.dungeonMaster], (err, result) => handleHttpReturn(res, err, result, 'CANNOT ADD CAMPAIGN'))
+})
+
 function handleHttpReturn(res, err, result, msg) {
   if(result) {
     res.status(200).send(result)

@@ -1,0 +1,17 @@
+<div class="admin-container">
+  <div class="new-campaign-container">
+    <form [formGroup]="newCampaignForm" (ngSubmit)="addCampaign()">
+      <mat-form-field>
+        <mat-label>Campaign Name</mat-label>
+        <input matInput formControlName="campaignName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dungeon Master</mat-label>
+        <input matInput formControlName="dungeonMaster" />
+      </mat-form-field>
+
+      <button mat-raised-button type="submit">Create Campaign</button>
+    </form>
+  </div>
+</div>

@@ -21,3 +21,8 @@ export interface NewPlayer {
   playerName: string;
   campaignKey: number
 }
+
+export interface NewCampaign {
+  campaignName: string;
+  dungeonMaster: string;
+}

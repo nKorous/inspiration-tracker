@@ -1,3 +1,4 @@
+import { NewCampaign } from './../interfaces/inspiration-data';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
@@ -56,6 +57,10 @@ export class DataService {
     this.http.post<any>(BASE_URL + '/api/addPlayer', data).subscribe(data => {
       this.getInspirationData()
     })
+  }
+
+  addCampaign(newCampaign: NewCampaign) {
+    this.http.post<any>(`${BASE_URL}/api/addCampaign`, newCampaign).subscribe(data => this.getInspirationData())
   }
 
   navToCampaign(c: Campaign){
